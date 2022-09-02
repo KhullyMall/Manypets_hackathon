@@ -58,4 +58,5 @@ function postcodePremium(price) {
   return price * premium;
 }
 
+
 console.log(calculateQuote(0, "germanashepherd", "sw12ws", 1));
