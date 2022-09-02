@@ -1,35 +1,33 @@
 export function finalPrice(body) {
   let finalPrice = 0;
-  //Looping through the POST request body
+  // Looping through the POST request body
   for (let i = 0; i < body.lenght; i++) {
     finalPrice =
       finalPrice + calculateQuote(body[i].age, body[i].breed, body[i].postcode);
   }
-
+  // Multiped discount will be applied if more than one pet were received
   if (body.lenght > 1) {
     finalPrice = multiPetDiscount(finalPrice);
   }
   return finalPrice;
 }
 
+// Calculating the insurance price of 1 pet
 function calculateQuote(age, breed, postcode) {
-  // Number Pets given by the size array
   const basePrice = 120;
 
   let price = startPrice(basePrice, age);
 
   const discountedBreeds = ["germanshepherd", "pug", "boxer"];
   const premiumPostcodes = ["SW", "NW", "KT"];
-
+  console.log(premiumPostcodes.includes(postcode.slice(0, 2)));
   if (discountedBreeds.includes(breed)) {
     price = breedDiscount(price);
   }
-  if (premiumPostcodes.includes(postcode.slice(0, 1))) {
+  if (premiumPostcodes.includes(postcode.slice(0, 2))) {
     price = postcodePremium(price);
   }
 
-  // If noPets more thean too, call that function multipetdiscount
-  // When telling if breed is valid, then apply discuont there
   return price;
 }
 
@@ -56,7 +54,9 @@ function breedDiscount(price) {
 
 function postcodePremium(price) {
   const premium = 1.15;
+
   return price * premium;
 }
 
-//console.log(calculateQuote(14, "germanashepherd", "SQ22SS", 1));
+
+console.log(calculateQuote(0, "germanashepherd", "sw12ws", 1));
