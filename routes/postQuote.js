@@ -1,8 +1,16 @@
 import express from "express";
 import { addQuoteInfo } from "../models/insertQuotes.js";
 import { finalPrice } from "../models/calculateQuote.js";
+import { getCount } from "../models/countTodayQuotes.js";
+
 import fetch from "node-fetch";
 const router = express.Router();
+
+// Quote counter
+router.get("/", async function (req, res) {
+  const result = await getCount();
+  res.json({ success: true, payload: result });
+});
 
 //Postcode Validation
 router.use(async function (req, res, next) {
@@ -42,6 +50,7 @@ router.post("/", async function (req, res) {
     res.json({ success: false, code: 501, message: "Could not find a quote" });
     console.log(err);
   }
+
   /*
     - Try to post the quote to the database
     - 

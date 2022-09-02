@@ -13,7 +13,7 @@ export function finalPrice(body) {
 }
 
 // Calculating the insurance price of 1 pet
-function calculateQuote(age, breed, postcode) {
+export function calculateQuote(age, breed, postcode) {
   const basePrice = 120;
 
   let price = startPrice(basePrice, age);
