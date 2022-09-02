@@ -18,6 +18,19 @@ router.use(async function (req, res, next) {
   }
 });
 
+//Breed validation
+router.use(async function (req, res, next) {
+  const breed = req.body.pets[0].breed;
+  const response = await fetch(`https://dog.ceo/api/breed/${breed}/images
+  `);
+  const data = await response.json();
+  if (data.message === "Breed not found (master breed does not exist)") {
+    res.status(404).json({ message: "This is not a dog breed 😞" });
+  } else {
+    next();
+  }
+});
+
 router.post("/", async function (req, res) {
   const quoteData = req.body.pets;
   const todaysDate = new Date();
