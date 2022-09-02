@@ -19,12 +19,12 @@ function calculateQuote(age, breed, postcode) {
   let price = startPrice(basePrice, age);
 
   const discountedBreeds = ["germanshepherd", "pug", "boxer"];
-  const premiumPostcodes = ["SW", "NW", "KT"];
-  console.log(premiumPostcodes.includes(postcode.slice(0, 2)));
-  if (discountedBreeds.includes(breed)) {
+  const premiumPostcodes = ["sw", "nw", "kt"];
+  //console.log(premiumPostcodes.includes(postcode.slice(0, 2).toLowerCase()));
+  if (discountedBreeds.includes(breed.toLowerCase())) {
     price = breedDiscount(price);
   }
-  if (premiumPostcodes.includes(postcode.slice(0, 2))) {
+  if (premiumPostcodes.includes(postcode.slice(0, 2).toLowerCase())) {
     price = postcodePremium(price);
   }
 
@@ -58,5 +58,4 @@ function postcodePremium(price) {
   return price * premium;
 }
 
-
-console.log(calculateQuote(0, "germanashepherd", "sw12ws", 1));
+console.log(calculateQuote(0, "Germanshepherd", "Sw12ws", 1));
