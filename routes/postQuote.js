@@ -9,7 +9,7 @@ const router = express.Router();
 // Quote counter
 router.get("/", async function (req, res) {
   const result = await getCount();
-  res.json({ success: true, payload: result });
+  res.json(result);
 });
 
 //Postcode Validation
