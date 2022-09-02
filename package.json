@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node -r dotenv/config ./bin/www.js",
+    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
     "createTable": "node -r dotenv/config ./db/scripts/createQuoteTable.js"
   },
   "dependencies": {
@@ -16,5 +17,8 @@
     "morgan": "~1.9.1",
     "node-fetch": "^3.2.10",
     "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.1"
   }
 }
