@@ -1,7 +1,7 @@
 export function finalPrice(body) {
   let finalPrice = 0;
   // Looping through the POST request body
-  for (let i = 0; i < body.lenght; i++) {
+  for (let i = 0; i < body.length; i++) {
     finalPrice =
       finalPrice + calculateQuote(body[i].age, body[i].breed, body[i].postcode);
   }
@@ -9,7 +9,7 @@ export function finalPrice(body) {
   if (body.lenght > 1) {
     finalPrice = multiPetDiscount(finalPrice);
   }
-  return finalPrice;
+  return Math.round(finalPrice);
 }
 
 // Calculating the insurance price of 1 pet

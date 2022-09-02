@@ -1,5 +1,9 @@
+import { query } from '../db/index.js';
+
 export async function addQuoteInfo(quoteData, quotePrice, date) {
-  const response = await query(
+  const responseArray = [];
+  for (let i=0; i<quoteData.length; i++) {
+    const response = await query(
     `INSERT INTO quotes (
         species,
         breed,
@@ -13,14 +17,17 @@ export async function addQuoteInfo(quoteData, quotePrice, date) {
       RETURNING *;`,
 
     [
-      quoteData.species,
-      quoteData.breed,
-      quoteData.age,
-      quoteData.address,
-      quoteData.postcode,
+      quoteData[i].species,
+      quoteData[i].breed,
+      quoteData[i].age,
+      quoteData[i].address,
+      quoteData[i].postcode,
       quotePrice,
       date,
     ]
   );
-  return response.rows;
+  responseArray.push(response.rows);
+  }
+  
+  return responseArray;
 }
