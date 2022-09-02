@@ -6,7 +6,7 @@ export function finalPrice(body) {
       finalPrice + calculateQuote(body[i].age, body[i].breed, body[i].postcode);
   }
   // Multiped discount will be applied if more than one pet were received
-  if (body.lenght > 1) {
+  if (body.length > 1) {
     finalPrice = multiPetDiscount(finalPrice);
   }
   return Math.round(finalPrice);
